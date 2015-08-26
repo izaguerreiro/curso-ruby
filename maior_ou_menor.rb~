@@ -59,13 +59,13 @@ def verifica_se_acertou(numero_secreto, chute)
 end
 
 def joga(nome, dificuldade)
-	numero_secreto = sorteia_numero_secreto dificuldade
+	numero_secreto = sorteia_numero_secreto(dificuldade)
 	limite_tentativa = 5
 	chutes = []
 	pontos_ate_agora = 1000
 
 	for tentativa in 1..limite_tentativa
-		chute = pede_numero tentativa, limite_tentativa
+		chute = pede_numero(tentativa, limite_tentativa)
 		chutes << chute
 
 		if nome == "iza"
@@ -76,7 +76,7 @@ def joga(nome, dificuldade)
 		pontos_a_perder = (chute - numero_secreto).abs / 2.0
 		pontos_ate_agora = pontos_ate_agora - pontos_a_perder
 
-		if verifica_se_acertou numero_secreto, chute
+		if verifica_se_acertou(numero_secreto, chute)
 			break
 		end
 	end
@@ -94,6 +94,6 @@ nome = da_boas_vindas
 dificuldade = pede_dificuldade
 
 loop do
-	joga nome, dificuldade
+	joga(nome, dificuldade)
 	break if nao_quero_jogar?
 end
