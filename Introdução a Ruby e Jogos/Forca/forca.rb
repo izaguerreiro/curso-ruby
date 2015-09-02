@@ -1,6 +1,7 @@
 # coding: utf-8
 
 require_relative 'ui'
+require_relative 'rank'
 
 def joga(nome)
 	palavra_secreta = sorteia_palavra_secreta
@@ -10,7 +11,8 @@ def joga(nome)
 	pontos_ate_agora = 0
 
 	while erros < 5
-		chute = pede_um_chute_valido chutes, erros
+		mascara = palavra_mascarada chutes, palavra_secreta
+		chute = pede_um_chute_valido chutes, erros, mascara
 
 		chutes << chute
 
@@ -27,7 +29,7 @@ def joga(nome)
 		else
 			acertou = chute == palavra_secreta
 			if acertou
-				avisa_errou_palavra
+				avisa_acertou_palavra
 				pontos_ate_agora += 100
 				break
 			else
@@ -39,10 +41,11 @@ def joga(nome)
 	end
 
 	avisa_pontos pontos_ate_agora
+	pontos_ate_agora
 end
 
-def pede_um_chute_valido(chutes, erros)
-	cabecalho_de_tentativa chutes, erros
+def pede_um_chute_valido(chutes, erros, mascara)
+	cabecalho_de_tentativa chutes, erros, mascara
 
     loop do
         chute = pede_um_chute
@@ -54,11 +57,32 @@ def pede_um_chute_valido(chutes, erros)
     end
 end
 
+def palavra_mascarada(chutes, palavra_secreta)
+    mascara = ""
+    for letra in palavra_secreta.chars
+        if chutes.include? letra
+            mascara += letra
+        else
+            mascara += "_"
+        end
+    end
+    mascara
+end
+
 def jogo_da_forca
 	nome = da_boas_vindas
+	pontos_totais = 0
+
+	avisa_campeao_atual le_rank
 
 	loop do 
-		joga nome
-		break if nao_quer_jogar?
+		pontos_totais += joga nome
+        avisa_pontos_totais pontos_totais
+        
+        if le_rank[1].to_i < pontos_totais
+            salva_rank nome, pontos_totais
+        end
+        
+        break if nao_quer_jogar?
 	end
 end

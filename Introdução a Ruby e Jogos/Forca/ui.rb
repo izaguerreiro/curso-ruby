@@ -11,7 +11,7 @@ end
 
 def pede_um_chute
 	puts "Entre com a letra ou palavra"
-	chute = gets.strip
+	chute = gets.strip.downcase
 	puts "Será que acertou? Você chutou #{chute}"
 	chute
 end
@@ -23,10 +23,21 @@ def nao_quer_jogar?
 end
 
 def sorteia_palavra_secreta
-	puts "Escolhendo uma palavra..."
-	palavra_secreta = "programador"
-	puts "Escolhida uma palavra com #{palavra_secreta.size} letras... boa sorte!"
+	avisa_escolhendo_palavra
+	texto = File.read("dicionario.txt")
+	todas_as_palavras = texto.split("\n")
+	numero_aleatorio = rand(todas_as_palavras.size)
+	palavra_secreta = todas_as_palavras[numero_aleatorio].downcase
+	avisa_palavra_escolhida palavra_secreta
 	palavra_secreta
+end
+
+def avisa_escolhendo_palavra
+	puts "Escolhendo uma palavra..."
+end
+
+def avisa_palavra_escolhida(palavra_secreta)
+	puts "Escolhida uma palavra com #{palavra_secreta.size} letras... boa sorte!"
 end
 
 def avisa_chute_repetido(chute)
@@ -53,8 +64,17 @@ def avisa_pontos(pontos_ate_agora)
     puts "Você ganhou #{pontos_ate_agora} pontos."
 end
 
-def cabecalho_de_tentativa(chutes, erros)
+def cabecalho_de_tentativa(chutes, erros, mascara)
     puts "\n\n\n\n"
+    puts "Palavra secreta: #{mascara}"
     puts "Erros até agora: #{erros}"
     puts "Chutes até agora: #{chutes}"
+end
+
+def avisa_campeao_atual(dados)
+    puts "Nosso campeão atual é #{dados[0]} com #{dados[1]} pontos."
+end
+
+def avisa_pontos_totais(pontos)
+    puts "Você possui #{pontos} pontos."
 end

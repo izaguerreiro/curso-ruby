@@ -1,1 +1,1 @@
-# Introdução a programação com Ruby e Jogos
+# Repositório para cursos de Ruby
