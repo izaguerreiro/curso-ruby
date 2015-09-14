@@ -1,15 +1,15 @@
 <h3>
-	<%= job.title %>
-	<% if job.premium %>
-		<strong>(premium)</strong>
-	<% end %>
+  <%= job.title %>
+  <% if job.premium %>
+    <strong>(premium)</strong>
+  <% end %>
 </h3>
 
 <%= simple_format job.description %>
 
 <p>
-	<%= pluralize(job.comments.size, "comment") %> |
-	<%= link_to 'Show', job %> |
-	<%= link_to 'Edit', edit_job_path(job) %> |
-	<%= link_to 'Destroy', job, method: :delete, data: {confirm: 'Are you sure?'} %>
+  <%= pluralize(job.comments.size, "comment") %> |
+  <%= link_to 'Show', job %> |
+  <%= link_to 'Edit', edit_job_path(job) %> |
+  <%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>

@@ -1,6 +1,4 @@
 <h4><%= comment.name %> said:</h4>
-
 <%= simple_format comment.body %>
-
 Sent <%= time_ago_in_words comment.created_at %> ago
-<%= link_to "Destroy", comment_path(comment), method: :delete,confirm: "Are you sure?"  %>
+<%= link_to "Destroy", comment_path(comment), method: :delete, confirm: "Are you sure?" %>

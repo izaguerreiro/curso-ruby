@@ -1,6 +1,10 @@
 JobBoard::Application.routes.draw do
   root to: "jobs#premium"
 
+  get "/companies/login", to: "login#new"
+  post "/companies/login", to: "login#create"
+
+  resources :companies, only: [:new, :create]
   resources :jobs do
     post "comments", to: "comments#create"
   end

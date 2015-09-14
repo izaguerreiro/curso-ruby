@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8" />
   <title>JobBoard</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="/" title="Job Board">Job Board</a>
 
-<%= yield %>
+        <ul id="app-menu" class="nav pull-right">
+          <li><%= link_to "Premium Jobs", root_path %></li>
+          <li><%= link_to "All Jobs", jobs_path %></li>
+          <li><%= link_to "New Job", new_job_path %></li>
+          <li><%= link_to "Hello World", hello_world_path %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  <%= javascript_include_tag "application" %>
 </body>
 </html>
