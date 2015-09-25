@@ -1,9 +1,4 @@
-<h3>
-  <%= job.title %>
-  <% if job.premium %>
-    <strong>(premium)</strong>
-  <% end %>
-</h3>
+<h3><%= job_title job %></h3>
 
 <%= simple_format job.description %>
 

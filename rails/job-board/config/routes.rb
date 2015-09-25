@@ -3,6 +3,7 @@ JobBoard::Application.routes.draw do
 
   get "/companies/login", to: "login#new"
   post "/companies/login", to: "login#create"
+  delete "/companies/login", to: "login#destroy"    
 
   resources :companies, only: [:new, :create]
   resources :jobs do

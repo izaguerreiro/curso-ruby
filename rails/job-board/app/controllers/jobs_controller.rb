@@ -1,4 +1,6 @@
 class JobsController < ApplicationController
+  before_filter :authorize_company, only: [:new, :create, :edit, :update, :destroy]
+
   # GET /jobs
   # GET /jobs.json
   def index
@@ -29,7 +31,7 @@ class JobsController < ApplicationController
   # GET /jobs/new
   # GET /jobs/new.json
   def new
-    @job = Job.new
+    @job = current_company.jobs.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,13 +41,13 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
-    @job = Job.find(params[:id])
+    @job = current_company.jobs.find(params[:id])
   end
 
   # POST /jobs
   # POST /jobs.json
   def create
-    @job = Job.new(params[:job])
+    @job = current_company.jobs.build(params[:job])
 
     respond_to do |format|
       if @job.save
@@ -61,7 +63,7 @@ class JobsController < ApplicationController
   # PUT /jobs/1
   # PUT /jobs/1.json
   def update
-    @job = Job.find(params[:id])
+    @job = current_company.jobs.find(params[:id])
 
     respond_to do |format|
       if @job.update_attributes(params[:job])
@@ -77,12 +79,19 @@ class JobsController < ApplicationController
   # DELETE /jobs/1
   # DELETE /jobs/1.json
   def destroy
-    @job = Job.find(params[:id])
+    @job = current_company.jobs.find(params[:id])
     @job.destroy
 
     respond_to do |format|
       format.html { redirect_to jobs_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+  def authorize_company
+    unless current_company
+      redirect_to root_path, alert: "You need to login to continue."
     end
   end
 end

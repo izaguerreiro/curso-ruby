@@ -2,6 +2,7 @@ require "bcrypt"
 
 class Company < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
+  has_many :jobs
 
   validates_presence_of :email, :name, :password
   validates_uniqueness_of :email

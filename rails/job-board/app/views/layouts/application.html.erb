@@ -15,14 +15,15 @@
         <ul id="app-menu" class="nav pull-right">
           <li><%= link_to "Premium Jobs", root_path %></li>
           <li><%= link_to "All Jobs", jobs_path %></li>
-          <li><%= link_to "New Job", new_job_path %></li>
           <li><%= link_to "Hello World", hello_world_path %></li>
 
           <% if current_company %>
+            <li><%= link_to "New Job", new_job_path %></li>
             <li><a>Logged as <%= current_company.name %></a></li>
+            
           <% else %>
             <li><%= link_to "New company", new_company_path %></li>
-            <li><%= link_to "Login", company_login_path %></li>
+            <li><%= link_to "Login", companies_login_path %></li>
           <% end %>
         </ul>
       </div>
@@ -30,6 +31,8 @@
   </div>
 
   <div class="container">
+    <% if notice %><p class="alert alert-success"><%= notice %></p><% end %>
+    <% if alert %><p class="alert alert-error"><%= alert %></p><% end %>
     <%= yield %>
   </div>
 
