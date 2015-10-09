@@ -1,9 +1,9 @@
-<h3><%= job_title job %></h3>
+<h3><%= job_title @job %></h3>
 
-<%= simple_format job.description %>
+<%= simple_format @job.description %>
 
 <p>
-  <%= pluralize(job.comments.size, "comment") %> |
+  <%= pluralize(@job.comments.size, "comment") %> |
   <%= link_to 'Show', job %> |
   <%= link_to 'Edit', edit_job_path(job) %> |
   <%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %>
