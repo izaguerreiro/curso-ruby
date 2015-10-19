@@ -4,7 +4,9 @@
 
 <p>
   <%= pluralize(@job.comments.size, "comment") %> |
-  <%= link_to 'Edit', edit_job_path(@job) %> |
+  <% if current_company == @job.company %>
+  	<%= link_to 'Edit', edit_job_path(@job) %> |
+  <% end %>
   <%= link_to 'Back', jobs_path %>
 </p>
 
