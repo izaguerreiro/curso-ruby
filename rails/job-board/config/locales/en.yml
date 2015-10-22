@@ -3,3 +3,10 @@
 
 en:
   hello: "Hello world"
+
+  company_mailer:
+  new_comment:
+  subject: "New comment received"
+
+  menu:
+  premium_jobs: "Premium Jobs"
