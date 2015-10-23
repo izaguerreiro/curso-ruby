@@ -1,4 +1,4 @@
 pt-BR:
-company_mailer:
-new_comment:
-subject: "Novo comentario recebido"
+ company_mailer:
+  new_comment:
+   subject: "Novo comentario recebido"

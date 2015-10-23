@@ -5,8 +5,18 @@ en:
   hello: "Hello world"
 
   company_mailer:
-  new_comment:
-  subject: "New comment received"
+   new_comment:
+    subject: "New comment received"
 
   menu:
-  premium_jobs: "Premium Jobs"
+   premium_jobs: "Premium Jobs"
+   all_jobs: "All Jobs"
+   new_job: "New Job"
+   logged_as: "Logged as"
+   new_company: "New Company"
+   login: "Login"
+
+  comments:
+   comment:
+    said: "%{name} said"
+    sent: "Sent %{timestamp} ago"
