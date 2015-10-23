@@ -2,21 +2,38 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
-
-  company_mailer:
-   new_comment:
-    subject: "New comment received"
-
-  menu:
-   premium_jobs: "Premium Jobs"
-   all_jobs: "All Jobs"
-   new_job: "New Job"
-   logged_as: "Logged as"
-   new_company: "New Company"
-   login: "Login"
-
-  comments:
+ helpers:
+  submit:
    comment:
-    said: "%{name} said"
-    sent: "Sent %{timestamp} ago"
+    create: "Send"
+
+ company_mailer:
+  new_comment:
+   subject: "New comment received"
+
+ menu:
+  premium_jobs: "Premium Jobs"
+  all_jobs: "All Jobs"
+  new_job: "New Job"
+  logged_as: "Logged as"
+  new_company: "New Company"
+  login: "Login"
+
+ links:
+  edit: "Edit"
+  back: "Back"
+  destroy: "Destroy"
+  destroy_confirmation: "Are you sure?"
+
+ comments:
+  count: "comments"
+  comment:
+   said: "%{name} said"
+   sent: "Sent %{timestamp} ago"
+
+ jobs:
+  index:
+   listing: "Listing jobs"
+  show:
+   new_comment: "Send a new comment"
+   comments: "Comments"

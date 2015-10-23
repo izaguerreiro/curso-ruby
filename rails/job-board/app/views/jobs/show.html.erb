@@ -3,17 +3,17 @@
 <%= simple_format @job.description %>
 
 <p>
-  <%= pluralize(@job.comments.size, "comment") %> |
+  <%= pluralize(@job.comments.size, t("comments.count")) %> |
   <% if current_company == @job.company %>
-  	<%= link_to 'Edit', edit_job_path(@job) %> |
+  	<%= link_to t("links.edit"), edit_job_path(@job) %> |
   <% end %>
-  <%= link_to 'Back', jobs_path %>
+  <%= link_to t("links.back"), jobs_path %>
 </p>
 
-<h2>Send a new comment</h2>
+<h2><%= t ".new_comment" %></h2>
 <%= render "comments/form" %>
 
-<h2>Comments</h2>
+<h2><%= t ".comments" %></h2>
 <div id="comments">
-	<%= render @comments %>
+	<%= render @job.comments %>
 </div>

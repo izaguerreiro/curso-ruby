@@ -12,6 +12,11 @@
       <div class="container">
         <a class="brand" href="/" title="Job Board">Job Board</a>
 
+        <ul class="nav">
+          <li><%= link_to "English", locale: "en" %></li>
+          <li><%= link_to "Português", locale: "pt-BR" %></li>
+        </ul>
+
         <ul id="app-menu" class="nav pull-right">
           <li><%= link_to t("menu.premium_jobs"), root_path %></li>
           <li><%= link_to t("menu.all_jobs"), jobs_path %></li>
