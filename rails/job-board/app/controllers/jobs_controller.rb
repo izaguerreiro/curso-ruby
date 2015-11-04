@@ -4,11 +4,25 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
-    @jobs = Job.most_recent.includes(:company).all
+    @id_minimo = params[:id_minimo]
+    if @id_minimo
+      list_partial = Job.where("id >= ?", @id_minimo)
+    else
+      list_partial = Job
+    end
+    
+    @jobs = list_partial.most_recent.includes(:company).all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @jobs }
+      format.atom { 
+        if @jobs.first
+          @last_updated = @jobs.first.updated_at
+        else
+          @last_updated = Time.now
+        end
+      }
     end
   end
 
@@ -17,10 +31,15 @@ class JobsController < ApplicationController
       paginate(page: params[:page], per_page: 10)
   end
 
+  rescue_from SlugError, :with => :rescue_from_slug_error
+  def rescue_from_slug_error exception
+    redirect_to exception.objeto
+  end
+
   # GET /jobs/1
   # GET /jobs/1.json
   def show
-    @job = Job.find(params[:id])
+    @job = Job.find_by_slug(params[:id])
     @comments = @job.comments.order('id desc')
 
     respond_to do |format|

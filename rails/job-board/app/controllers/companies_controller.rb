@@ -12,4 +12,9 @@ class CompaniesController < ApplicationController
 			render action: "new"
 		end
 	end
+
+	def show
+		@company = Company.find(params[:id])
+		render json: @company, except: [:encrypted_password], include: [:jobs]
+	end
 end

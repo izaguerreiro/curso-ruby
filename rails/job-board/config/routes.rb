@@ -5,7 +5,7 @@ JobBoard::Application.routes.draw do
   post "/companies/login", to: "login#create"
   delete "/companies/login", to: "login#destroy"    
 
-  resources :companies, only: [:new, :create]
+  resources :companies, only: [:new, :create, :show]
   resources :jobs do
     post "comments", to: "comments#create"
   end
